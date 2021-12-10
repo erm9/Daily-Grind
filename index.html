@@ -50,190 +50,174 @@
 	</header>
     <main>
 		 <header><h3 class="slogan">You drink our coffee, we make large bucks!</h3></header>
+		 <p>
+			This webpage uses HTML/CSS & JavaScript to create a single page that rotates unique colors 
+			and content for each weekday (Sunday to Saturday).
+		 </p>
 		 <div id="coffeeTarget"></div>
-		 <p>Click the links below to see coffee specials
-			  for other weekdays</p>
-			  <p><a href="?day=0">Sunday</a></p>
-			  <p><a href="?day=1">Monday</a></p>
-			  <p><a href="?day=2">Tuesday</a></p>
-			  <p><a href="?day=3">Wednesday</a></p>
-			  <p><a href="?day=4">Thursday</a></p>
-			  <p><a href="?day=5">Friday</a></p>
-			  <p><a href="?day=6">Saturday</a></p>
+
+		<p>Click below to view the coffee special for different days of the week</p>
+		<p><a href="?day=0">Sunday</a></p>
+		<p><a href="?day=1">Monday</a></p>
+		<p><a href="?day=2">Tuesday</a></p>
+		<p><a href="?day=3">Wednesday</a></p>
+		<p><a href="?day=4">Thursday</a></p>
+		<p><a href="?day=5">Friday</a></p>
+		<p><a href="?day=6">Saturday</a></p>
+
 		 <!--
         <p>
     		 <img src="images/pumpkin-spice-latte.jpg" alt="Our Pumpkin Spice Latte tastes great on a Fall Day!" id="coffee" />
-            <strong >Monday's Coffee Special:</strong> Monday's daily coffee special is <strong >Pumpkin Spice Latte</strong>, which makes us wish it was always Fall, as this is one of our top sellers!
+            <strong>Monday's Coffee Special:</strong> Monday's daily coffee special is <strong>Pumpkin Spice Latte</strong>, which makes us wish it was always Fall, as this is one of our top sellers!
 		</p>
 		-->
 
+
      </main>
     <footer>
-      <small>&copy; 2014-2021, All Rights Reserved ~
+      <small>&copy; 2014-2015, All Rights Reserved ~
       <a href="http://validator.w3.org/check/referer" target="_blank">Valid HTML</a> ~
       <a href="http://jigsaw.w3.org/css-validator/check?uri=referer" target="_blank">Valid CSS</a>
       </small>
     </footer>
     <!-- END Footer -->
-<script>
-	/*
-		Use HTML/CSS & JavaScript to create a single page that rotates 
-		unique colors and content for each weekday (Sunday to Saturday) 
-		into the page.  The content must include:
-		One unique image, with appropriate and matching content in the alt tag.
-		A paragraph or two of content that describes the daily item 
-		(paragraph must include the name of the highlighted weekday)
-		A unique color that supports the image and paragraph of content
-	*/
+	<script>
+		/*
+			Use HTML/CSS & JavaScript to create a single page that rotates unique colors 
+			and content for each weekday (Sunday to Saturday) into a page.
+			
+			The content must include:
+			One unique image, with appropriate and matching content in the alt tag.  
+			A paragraph or two of content that describes the daily item 
+			(paragraph must include the name of the highlighted weekday)
+			A unique color that supports the image and paragraph of content
+		*/
 
-	function coffeeTemplate(coffee){
-		let myReturn= "";
+		function coffeeTemplate(coffee){
+			let myReturn = "";
 
-		myReturn += `<p>
-             <img src="images/${coffee.pic}" alt="${coffee.alt}" id="coffee" />
-            <strong >${coffee.weekday}'s Coffee Special:</strong> ${coffee.weekday}'s daily coffee special is <strong >${coffee.coffee}</strong>, ${coffee.description}
+			myReturn += `<p>
+            <img src="images/${coffee.pic}" alt="${coffee.alt}" id="coffee" />
+            <strong>${coffee.weekday}'s Coffee Special:</strong> ${coffee.weekday}'s daily coffee special is <strong>${coffee.coffee}</strong>, ${coffee.description}
         </p>`;
 
-		return myReturn; 
-	}
+			return myReturn;
+		}
 
-	//use location object to access querystring (address bar)
-	const queryString = window.location.search;
-
-	//output to console    
-	console.log(queryString);
-		
-	//separate querystring parameters
-	const urlParams = new URLSearchParams(queryString);
-	
-
-	let myDate = new Date();
-	let today = myDate.getDay();
-	let coffee = "";
-
-	if(urlParams.has("day")){
-		today = urlParams.get("day");
-		today = parseInt(today);
-	}
-
-	//REMOVE THE FOLLOWING WHEN NOT TESTING
-	//today = 0;
-
-	switch(today){
-
-		case 0:
-			today = "Sunday";
-
-			coffee = {
-				coffee: "Bubble Tea",
-				alt: "This is a pic of a Bubble Tea",
-				description: `I Love Bubble Tea! It's bubbly!`,
-				pic: "bubble-tea.jpg",
-				color: "purple",
-				weekday: "Sunday"
-			}
-
-		break;
-
-		case 1:
-			today = "Monday";
-
-			coffee = {
-				coffee: "Caramel",
-				alt: "This is a pic of a Caramel Latte",
-				description: `MMMMMMMM Caramel`,
-				pic: "caramel-latte.jpg",
-				color: "gold",
-				weekday: "Monday"
-			}
-
-		break;
-
-		case 2:
-			today = "Tuesday";
-
-			coffee = {
-				coffee: "Cold Brew",
-				alt: "This is a pic of a Cold Brew",
-				description: `Cold Brew With The Boys`,
-				pic: "cold-brew.jpg",
-				color: "brown",
-				weekday: "Tuesday"
-			}
-
-		break;
-
-		case 3:
-			today = "Wednesday";
-
-			coffee = {
-				coffee: "Drip",
-				alt: "This is a pic of a Drip Coffee",
-				description: `Drip or Drown Coffee`,
-				pic: "drip.jpg",
-				color: "blue",
-				weekday: "Wednesday"
-			}
-
-		break;
-
-		case 4:
-			today = "Thursday";
-
-			coffee = {
-				coffee: "Frappaccino",
-				alt: "This is a pic of a Frappaccino",
-				description: `Frappaccino As Close As Faneto`,
-				pic: "frappaccino.jpg",
-				color: "Red",
-				weekday: "Thursday"
-			}
-
-		break;
-
-		case 5:
-			today = "Friday";
-
-			coffee = {
-				coffee: "Mocha",
-				alt: "This is a pic of Mocha",
-				description: `Shaq's favorite Mocha!`,
-				pic: "mocha.jpg",
-				color: "teal",
-				weekday: "Friday"
-			}
-
-		break;
-
-		case 6:
-			today = "Saturday";
-
-			coffee = {
-				coffee: "Pumpkin Spice ",
-				alt: "This is a pic of Pumpkin Spice Latte",
-				description: `Nothing better than pumpkin`,
-				pic: "pumpkin-spice-latte.jpg",
-				color: "magenta",
-				weekday: "Saturday"
-			}
+		//use location object to access querystring (address bar)
+		const queryString = window.location.search;
+    
+		//output to console    
+		console.log(queryString);
 			
-		break;
+		//separate querystring parameters
+		const urlParams = new URLSearchParams(queryString);
 
-	}
+		let myDate = new Date();
 
-	document.getElementById("coffeeTarget").innerHTML = coffeeTemplate(coffee);
+		let today = myDate.getDay();
 
-	document.querySelector("html").style.backgroundColor = coffee.color;
+		let coffee = "" //will be an object
 
-	console.log(today);
+		if (urlParams.has("day")){
+			today = urlParams.get("day");
+			today = parseInt(today);
+		}
 
+		//TEST ONLY< DON'T LEAVE THIS LINE IN THE FINAL VERSION
+		// today = 88;
 
+		switch(today){
+			case 0:
+				today = "Sunday";
+				coffee = {
+					pic: "mocha.jpg",
+					alt: "A pic of a mocha",
+					color: "green",
+					description: `Mocha is fantastic!`,
+					coffee: "Mocha",
+					weekday: "Sunday"
+				}
+			break;
+			case 1:
+				today = "Monday";
+				coffee = {
+					pic: "bubble-tea.jpg",
+					alt: "A pic of bubble tea",
+					color: "purple",
+					description: `I luv me sum bubble tea!`,
+					coffee: "Bubble Tea",
+					weekday: "Monday"
+				}
+			break;
+			case 2:
+				today = "Tuesday";
+				coffee = {
+					pic: "caramel-latte.jpg",
+					alt: "A pic of a caramel latte",
+					color: "gold",
+					description: `Our caramel latte is very popular!!`,
+					coffee: "Caramel Latte",
+					weekday: "Tuesday"
+				}
+			break;
+			case 3:
+				today = "Wednesday";
+				coffee = {
+					pic: "pumpkin-spice-latte.jpg",
+					alt: "Pumpkin Spice Latte",
+					color: "orange",
+					description: `Pumpkin Spice Lattes are awesome!`,
+					coffee: "Pumpkin Spice Latte",
+					weekday: "Wednesday"
+				}
+			break;
+			case 4:
+				today = "Thursday";
+				coffee = {
+					pic: "cold-brew.jpg",
+					alt: "Cold Brew",
+					color: "brown",
+					description: `The Cold Brews are cold`,
+					coffee: "Cold Brew",
+					weekday: "Thursday"
+				}
+			break;
+			case 5:
+				today = "Friday";
+				coffee = {
+					pic: "drip.jpg",
+					alt: "Drip",
+					color: "red",
+					description: `Get some drip coffee for some drip.`,
+					coffee: "Drip",
+					weekday: "Friday"
+				}
+			break;
+			case 6:
+				today = "Saturday";
+				coffee = {
+					pic: "frappaccino.jpg",
+					alt: "Frappaccino",
+					color: "yellow",
+					description: `Our Frappaccino is the best.`,
+					coffee: "Frappaccino",
+					weekday: "Saturday"
+				}
+			break;
+			default: 
+				today = "Incorrect Day";
+		}
 
-	console.log(coffee);
+		document.getElementById("coffeeTarget").innerHTML = coffeeTemplate(coffee);
 
+		document.querySelector("html").style.backgroundColor = coffee.color;
 
+		console.log(today)
 
-</script>
+		console.log(coffee);
+
+    </script>
 	
 </body>
 </html>
